@@ -1,0 +1,11 @@
+.text-black
+  color black !important
+.text-transparent
+  color transparent !important
+for name, color in BOOSTRAP_COLORS
+  .text-{name} // override bootstrap
+    color color !important
+  .bg-{name} // override bootstrap
+    background-color color !important
+  .border-{name} // override bootstrap
+    border-color color !important

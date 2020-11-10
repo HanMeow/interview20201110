@@ -1,0 +1,38 @@
+*
+  box-sizing border-box
+  &:before, &:after
+    box-sizing border-box
+img[src$='.png']
+  image-rendering optimizeQuality
+html, body
+  -webkit-overflow-scrolling touch
+  -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+body
+  position relative
+  min-height 100%
+  -webkit-font-smoothing antialiased
+  &.hidden
+    overflow hidden
+  &.no-scroll
+    position fixed
+    top 0
+    left 0
+    width 100%
+    -webkit-overflow-scrolling touch
+/* Selection */
+::-moz-selection
+  background c-orange
+  color white
+::selection
+  background c-orange
+  color white
+/* Resets */
+a, a:hover
+  text-decoration none
+a, a:link, a:hover, a:active, a:visited, a:-webkit-any-link
+  color inherit
+*
+  outline none
+a:hover
+  color initial
+  text-decoration none

@@ -1,0 +1,207 @@
+.header-logo
+  left 15px
+  top 15px
+  width 120px
+  max-width 120px
+  transform translate3d(0, 0, 1px) // 防止一個 ios 渲軟錯誤
+  height auto
+  @media (max-width: 767px)
+    left 4vw
+    top 4vw
+    // transform translateX(-100px)
+    width 26.67vw
+    max-width 26.67vw
+
+.logo
+  position absolute
+  // position fixed
+  width vw(158)
+  top vw(25)
+  left vw(28)
+
+// 漢堡選單
+.style-menu
+  position absolute
+  width vw(100 * 7.5)
+  // 選單變化參數
+  $boder_width=2px
+  $transition_duration=.5s
+  color #FFF
+  // 選單變化參數
+  input[type=checkbox]
+    display none
+  label
+    position absolute
+    top 0
+    right 0
+    width vw(125)
+    height vw(100)
+  .hamburger
+    position absolute
+    top vw(40)
+    right vw(40)
+    width vw(40)
+    height $boder_width
+    // backdrop-filter invert(100%)
+    border-bottom $boder_width #3d3f43 solid
+    transition border-color $transition_duration
+    // box-shadow 0 0 6px 1px #cda974
+    &:before
+      content ' '
+      position absolute
+      width vw(47)
+      height $boder_width
+      // backdrop-filter invert(100%)
+      top vw(-10)
+      right vw(-6)
+      border-bottom $boder_width #3d3f43 solid
+      transition top $transition_duration, width $transition_duration, transform $transition_duration
+    &:after
+      content ' '
+      position absolute
+      width vw(47)
+      height $boder_width
+      // backdrop-filter invert(100%)
+      top vw(9.5)
+      right vw(-6)
+      border-bottom $boder_width #3d3f43 solid
+      transition top $transition_duration, width $transition_duration, transform $transition_duration
+
+  // 選單內容
+  .menu-content
+    position fixed
+    // width 0
+    width vw(750)
+    height 100%
+    top 0
+    right "calc( %s - %s )" % (50% vw(50 * 7.5))
+    padding-left vw(750)
+    opacity 0
+    background-color rgba(#000, 0.8)
+    transform-origin right
+    overflow hidden
+    transition opacity $transition_duration,
+      max-width $transition_duration * 1.5,
+      width $transition_duration * 1.5,
+      padding $transition_duration * 1.5
+    &:before
+      content ' '
+      position absolute
+      right 0
+      height calc(100% - 10px)
+      width 0
+      border-bottom-left-radius 10px
+      transform-origin right
+      background radial-gradient(circle at 95% 5%, #183365, #081120 30%) no-repeat
+      transition opacity $transition_duration, width $transition_duration
+    .menu-link
+      transition transform $transition_duration
+      // &:before
+      //   transition width $transition_duration*2.5
+      // &:after
+      //   transition left $transition_duration*2.5
+  input[type=checkbox]:not(:checked)
+    & ~ .menu-content
+      pointer-events none
+      .menu-link
+        transform translate3d(vw(50), 0, 0)
+  input[type=checkbox]:checked
+    & ~ label .hamburger
+      border-color transparent
+      &:before
+        top 0
+        width vw(47)
+        transform rotate(45deg)
+        border-color #FFF
+        box-shadow none
+      &:after
+        top 0
+        width vw(47)
+        transform rotate(-45deg)
+        border-color #FFF
+        box-shadow none
+    & ~ .menu-content
+      overflow scroll
+      padding-left vw(310)
+      width calc(min(100vw, 750px))
+      opacity 1
+      // transition opacity $transition_duration,
+      //   max-width $transition_duration,
+      //   padding $transition_duration*1.5
+      &:before
+        width vw(440)
+        // transition opacity $transition_duration, width $transition_duration
+      .menu-link
+        &:before
+          // left 100%
+          width 100%
+          // transition width $transition_duration*2.5
+        &:after
+          left 100%
+          // transition left $transition_duration*2.5
+
+  // 連結/連結框
+  .menu-link
+    position relative
+    white-space nowrap
+    line-height 1.4rem
+    // width vw(380)
+    width stretch
+    margin 0 vw(50)
+    padding 0 vw(20) vw(15) vw(20)
+    text-align left
+    font-size 0.8rem
+    font-weight 400
+    letter-spacing 0.2rem
+    color #d1d3d6
+    flex 1
+    &:before
+      position absolute
+      content ' '
+      // right 0
+      left 0
+      bottom 0
+      height 1px
+      width 0
+      // background-color: #FFF
+      background linear-gradient(to right, transparent 0%, #1d2088 25%) no-repeat
+      background-size 100% 100%
+      transform-origin left
+    &:after
+      position absolute
+      content ' '
+      // right 0
+      left 0
+      bottom 0
+      height 4px
+      width 4px
+      border-radius 999px
+      background-color #1d2088
+      transform translate(0, 2px)
+  
+  // ol
+  //   list-style decimal
+
+  span.menu-content
+    line-height 20px
+    min-width 100%
+    text-align justify
+
+  .menu-link-product
+    width vw(74.6 * 7.5)
+    font-size 0.9em
+    border-top-style none
+    border-bottom-style none
+    & > .d-flex
+      flex 1
+    &:last-of-type
+      border-bottom-style none
+  
+  .menu-product-button
+    width vw(42.6 * 7.5)
+
+.video-page ~ .fixed-group.position-top-left.h-100
+  top calc((100% - min(100vw, 750px) * 1200 / 750) / 2 )
+  // top calc( max( calc((100% - min(100vw, 750px) * 1200 / 750) / 2) , calc(0.33333 * min(100vw, 750px )) ) )
+  // .header-logo.logo
+  //   top 'calc(%s + (100% - min(100vw, 750px) * 1200 / 750) / 2 )' % vw(25)

@@ -1,0 +1,66 @@
+// 外部字體
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap')
+
+@require 'common'
+
+// 主容器(全頁面皆有)
+@require './pages/common.styl'
+
+// 頂層/讀檔樣式
+@require './pages/top.styl'
+
+// google map 容器樣式
+// @require './pages/googleMap.styl'
+
+// logo 與 選單
+// @require './pages/logo-menu.styl'
+
+html,
+body
+  margin 0
+  width 100%
+  height 100%
+  // position fixed
+  position relative
+  // border 3px blue solid
+  // overflow auto
+  // overflow scroll
+  // overflow-y hidden
+  // overflow-x hidden
+  overflow visible
+  -webkit-overflow-scrolling touch
+  user-select none
+  touch-action manipulation // 防止 iphone 雙擊縮放
+  // border 5px green solid
+  // font-family 'Microsoft JhengHei', '微軟正黑體', Helvetica, Verdana, Arial, '儷黑 Pro', 'LiHei Pro', sans-serif
+  font-family 'nbk', 'Noto Sans TC', '微軟正黑體', arial, sans-serif !important
+  // font-weight bold
+
+// body
+//   // height auto
+//   overflow-x hidden
+//   overflow-y scroll
+//   // overflow scroll
+  // &:before
+  //   left calc((100vw - min(100vw, 750px))/2)
+
+html.no-scroll
+  overflow hidden
+body.no-scroll
+  overflow hidden
+
+.header
+  position relative
+  overflow hidden
+  width 100%
+  // left 50%
+  // transform translate3d(-50%, 0, 0) 
+
+$min-width = 768px
+.header-size
+  // width 100vw
+  height calc((100vw * 9 / 16) - 1px)
+  min-height $min-width * (9 / 16)
+  &:not(.header)
+    width 100vw
+    min-width $min-width

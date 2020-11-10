@@ -1,0 +1,61 @@
+$dot-size = 8px
+
+.step-line
+  position relative
+  height $dot-size * 2
+  min-height $dot-size
+  // box-sizing content-box
+  mask linear-gradient(to right, transparent, #fff 20%, #fff 80%, transparent) center
+  mask-repeat no-repeat
+  overflow visible
+  background:
+    'radial-gradient(circle at calc(25% - %s) 50%, #FFF, #FFF %s, #FFFFFF00 %s)' % ( ($dot-size/2) ($dot-size/2 - 1) ($dot-size/2) ) 100% 100%,
+    'radial-gradient(circle at calc(75% - %s) 50%, #FFF, #FFF %s, #FFFFFF00 %s)' % ( ($dot-size/2) ($dot-size/2 - 1) ($dot-size/2) ) 100% 100%,
+    'linear-gradient(to bottom, #FFFFFF00 calc(50% - .6px), #FFFFFF77 calc(50% - .5px), #FFFFFF77 calc(50% + .5px), #FFFFFF00 calc(50% + .6px)) left/ %s 100%' % vw(750*.25)
+  background-repeat no-repeat
+  transition all .2s linear
+  // animation pattern-spotlight 3s linear infinite
+  &:before
+    content ' '
+    position absolute
+    top 50%
+    left 0
+    width 100%
+    // border-top-style solid
+    border-bottom-style dashed
+    border-width 0.5px
+    border-color #FFFFFF77
+    transform translate3d(0, -50%, 0) scaleY(1)
+  &:after
+    content ' '
+    position absolute
+    left - $dot-size
+    height $dot-size + 4
+    width $dot-size + 4
+    border-radius 999px
+    border 1px white solid
+    background-color transparent
+    background radial-gradient(circle at center, #182d4f 50%, #182d4f00 60%) no-repeat
+    top 50%
+    transform translate3d(0, -50%, 0)
+    transition left .2s linear
+  &.is-first:after
+    left 'calc(25% - %s)' % ( $dot-size + 2)
+  &.is-second
+    background:
+      'radial-gradient(circle at calc(25% - %s) 50%, #FFF, #FFF %s, #FFFFFF00 %s)' % ( ($dot-size/2) ($dot-size/2 - 1) ($dot-size/2) ) 100% 100%,
+      'radial-gradient(circle at calc(75% - %s) 50%, #FFF, #FFF %s, #FFFFFF00 %s)' % ( ($dot-size/2) ($dot-size/2 - 1) ($dot-size/2) ) 100% 100%,
+      'linear-gradient(to bottom, #FFFFFF00 calc(50% - .75px), #FFFFFF77 calc(50% - .5px), #FFFFFF77 calc(50% + .5px), #FFFFFF00 calc(50% + .75px)) left/ %s 100%' % vw(750*.75)
+    background-repeat no-repeat
+    &:after
+      left 'calc(75% - %s)' % ( $dot-size + 2)
+
+
+@keyframes pattern-spotlight {
+  0% {
+      mask-position: -750px
+  }
+  to {
+      mask-position: 750px
+  }
+}

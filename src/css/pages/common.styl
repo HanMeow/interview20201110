@@ -1,0 +1,195 @@
+// 主容器(全頁面皆有)
+
+// 背景靜圖設定
+@require './background.styl'
+
+body
+  background #000
+
+*
+  &::-webkit-scrollbar-track
+    // -webkit-box-shadow inset 0 0 6px rgba(0,0,0,0.3)
+    background-color #5679b244
+    border-radius 2px
+  &::-webkit-scrollbar // 預先隱藏 scrollbar
+    width 6px
+    height 6px
+    // background-color #f4d5fd
+  &::-webkit-scrollbar-thumb
+    // background-color #16346d
+    // background-color #5679b2
+    background-color #0366c9
+    border-radius 999px
+
+
+.app
+  position relative
+  // position absolute
+  user-select none
+  max-width 750px
+  margin 0 auto
+  height 100%
+  // overflow scroll
+  overflow visible
+  // overflow auto
+  // border 2px green solid
+  &::-webkit-scrollbar
+    width 0 // 防止左右滑動出現
+    height 0 // 防止左右滑動出現
+
+.style-page
+  position relative
+  // overflow-x hidden
+  // overflow visible
+  overflow auto
+  overflow-y scroll
+  // border 2px purple solid
+  transition all .2s ease-in-out
+
+.intro-bg .style-page
+  overflow-y visible
+
+// 給一個 100% 大小的 before
+.before-100
+  &:before
+    content ' '
+    position fixed
+    width 100%
+    height 100%
+
+// 防止長按存圖
+img
+  -webkit-touch-callout none
+
+// 固定位置用
+.position-top
+  top 0
+.position-left
+  left 0
+.position-top-left
+  top 0
+  left 0
+
+// 垂直置中用
+.vertical
+  top 50%
+  transform translate3d(0, -50%, 0)
+
+// 水平置中用
+.horizontal
+  left 50%
+  transform translate3d(-50%, 0, 0)
+
+.vertical.horizontal
+  transform translate3d(-50%, -50%, 0)
+
+.btn-circle
+  border-radius 999px
+
+.btn-round
+  border-radius 9999px
+
+.p-absolute
+  position absolute
+
+.text-underline 
+  text-decoration underline
+    
+// padding
+for i in (5..10)
+  .p-{i},
+  .pl-{i}
+  .px-{i}
+    padding-left ((i - 4) * .25rem + 1.5rem) !important
+  .p-{i},
+  .pr-{i}
+  .px-{i}
+    padding-right ((i - 4) * .25rem + 1.5rem) !important
+  .p-{i},
+  .pt-{i}
+  .py-{i}
+    padding-top ((i - 4) * .25rem + 1.5rem) !important
+  .p-{i},
+  .pb-{i}
+  .py-{i}
+    padding-bottom ((i - 4) * .25rem + 1.5rem) !important
+
+// margin
+for i in (5..10)
+  .m-{i},
+  .ml-{i}
+  .mx-{i}
+    margin-left ((i - 4) * .25rem + 1.5rem) !important
+  .m-{i},
+  .mr-{i}
+  .mx-{i}
+    margin-right ((i - 4) * .25rem + 1.5rem) !important
+  .m-{i},
+  .mt-{i}
+  .my-{i}
+    margin-top ((i - 4) * .25rem + 1.5rem) !important
+  .m-{i},
+  .mb-{i}
+  .my-{i}
+    margin-bottom ((i - 4) * .25rem + 1.5rem) !important
+
+// flex box 佔位
+for i in (1..10)
+  .flex-blocker-{i}
+    flex i
+
+// z-index 佔位
+for i in (1..20)
+  .zi-{i}
+    z-index i
+
+// transition
+for i in (1..20)
+  .transition-{i}
+    transition all (0s + i / 10) ease-in-out 
+
+.main-button-container
+  position relative
+  text-align center
+  overflow hidden
+  transform translate3d(0, 0, 0)
+.main-button
+  position relative
+  background none
+.main-button-image
+  position relative
+  // width vw(213)
+  height vw(79)
+
+// 過渡動畫(透明度)
+.fadePage-enter-active,
+.fadePage-leave-active
+  transition opacity .2s
+  // transition opacity $transition_duration, transform $transition_duration
+  // transform-origin center
+
+.fadePage-enter
+  opacity 0
+  // transform scale(.9)
+
+.fadePage-leave-to
+  opacity 0
+  // transform scale(1.1)
+
+.fadeViews-enter-active,
+.fadeViews-leave-active
+  transition opacity .5s
+  // &.view-scroll-container
+  //   position absolute
+
+.fadeViews-leave-active.fadeViews-leave-to
+  position absolute
+// .fadeViews-enter-active
+//   position absolute
+//   // top 0
+
+.fadeViews-enter
+  opacity 0
+
+.fadeViews-leave-to
+  opacity 0

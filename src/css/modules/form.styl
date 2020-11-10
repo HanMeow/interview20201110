@@ -1,0 +1,50 @@
+/* Reset */
+input, textarea, select, button
+  font-size: 1rem
+::-ms-clear
+   display: none
+input,textarea,select
+  border-width 0
+  color inherit
+  background-color white
+  &:focus
+    outline none
+button,input[type="submit"],input[type="reset"]
+  border 0
+  appearance none
+select::-ms-expand
+  opacity 0
+
+/* Form element global styles */
+$input-h = 40px
+$form-color = c-darkgray
+$form-border-color = c-blue
+$form-focus-border-color = c-lightblue
+$form-border-width = 2px
+$form-padding = 10px
+$form-margin = 10px
+$form-inner-line-height = 1.2
+$form-error-color = c-red
+$form-error-bgcolor = c-pink
+$form-placeholder-color = #bbb
+
+/* Form elements */
+@import 'form-input' // input, textarea
+@import 'form-select' // select, date
+@import 'form-radio' // radio, checkbox
+
+/* Other elements */
+.form-title
+  line-height $form-inner-line-height
+  margin $form-margin 0
+.error-msg
+  margin-top $form-margin
+  color c-red
+  line-height $form-inner-line-height
+.module-radiogroup
+  line-height 2
+
+/* Form elements distances */
+input, textarea, .module-radio, .select-wrap
+  &+input, &+textarea, &+.error-msg, &+.select-wrap
+    margin-top $form-margin

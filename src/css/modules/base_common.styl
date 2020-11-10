@@ -1,0 +1,16 @@
+main
+  display block
+.cursor-pointer
+  cursor pointer
+.clearfix
+  &:before, &:after
+    display table
+    content ' '
+  &:after
+    clear both
+// GTM
+.click-self, [data-category], [data-action], [data-label]
+  > *
+    pointer-events none
+.pointer-events-none
+  pointer-events none
