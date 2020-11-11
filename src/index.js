@@ -1,6 +1,8 @@
 ﻿import Vue from 'vue';
 import App from '@/pages/App.vue';
 // import 'common';
+import 'vant/lib/index.css';
+import lazyload from 'vant/lib/lazyload';
 import '@/css/index.styl';
 import smoothscroll from 'smoothscroll-polyfill';
 import gsap from 'gsap';
@@ -8,6 +10,8 @@ import { ScrollToPlugin } from 'gsap/all';
 import router from './router';
 import store from './store';
 // import vueGlobalPlugins from './utils/vueGlobalPlugins';
+
+Vue.use(lazyload);
 
 gsap.registerPlugin(ScrollToPlugin);
 

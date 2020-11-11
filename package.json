@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=development APP_ENV=dev webpack-dev-server --config internal/webpack/webpack.config.js",
     "build": "rimraf ./dist && cross-env NODE_ENV=production APP_ENV=stage webpack --config internal/webpack/webpack.config.js --progress --hide-modules",
     "gulp": "gulp",
-    "push-master": "git checkout master && git merge dev --no-ff && git push && git checkout dev"
+		"deploy": "yarn build --path=/interview20201110/ --routerMode=hash && cd dist && git init && git add -A && git commit -m 'deploy' && git push -f https://github.com/HanMeow/interview20201110.git master:gh-pages && cd .."
   },
   "browserslist": [
     "ie >= 11",
@@ -97,6 +97,7 @@
     "swiper": "^5.4.3",
     "url-loader": "^3.0.0",
     "vinyl-buffer": "^1.0.1",
+		"vant": "2.10.13",
     "vue": "^2.6.11",
     "vue-loader": "^15.8.3",
     "vue-router": "^3.1.5",

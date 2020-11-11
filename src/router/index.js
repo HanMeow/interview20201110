@@ -30,6 +30,16 @@ export const routes = [
     },
   },
   {
+    path: '/list',
+    name: 'list',
+    component: (r) => require.ensure([], () => r(require('@/pages/list.vue')), 'ListContent'),
+    // component: Home,
+    meta: {
+      noNavbar: true,
+      // isWhite: true,
+    },
+  },
+  {
     path: '/*',
     redirect: {
       name: 'index',

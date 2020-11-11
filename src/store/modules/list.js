@@ -5,7 +5,10 @@
 // import router from '@/router';
 import { ajax } from '@/services/api.js';
 
+const defaultAddress = '0x960DE9907A2e2f5363646d48D7FB675Cd2892e91';
+
 const state = {
+  address: '',
   assets: [],
 };
 
@@ -20,16 +23,19 @@ const mutations = {
       }
     });
   },
+  reset(state, payload) {
+    state.address = defaultAddress;
+    state.assets.splice(0);
+  },
 };
 
 const actions = {
   read({ commit, dispatch, state, rootState }, payload) {
+    const { address } = state;
     const {
-      address,
       offset,
       limit,
     } = {
-      address: '0x960DE9907A2e2f5363646d48D7FB675Cd2892e91',
       offset: 0,
       limit: 20,
       ...payload,
@@ -57,7 +63,7 @@ const actions = {
 };
 
 const getters = {
-  // shareimg: (state) => state.share.shareimg,
+  assets: (state) => state.assets,
 };
 
 export default {
