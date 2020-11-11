@@ -10,10 +10,11 @@ const defaultAddress = '0x960DE9907A2e2f5363646d48D7FB675Cd2892e91';
 const state = {
   address: '',
   assets: [],
+  noMore: false,
 };
 
 const mutations = {
-  set(state, payload) {
+  setList(state, payload) {
     const { assets } = state;
     const ids = assets.map(({ id }) => id);
     payload.forEach((item) => {
@@ -23,15 +24,22 @@ const mutations = {
       }
     });
   },
+  setAddress(state, payload) {
+    state.address = payload;
+  },
+  setNoMore(state, payload) {
+    state.noMore = !!payload;
+  },
   reset(state, payload) {
     state.address = defaultAddress;
     state.assets.splice(0);
+    state.noMore = false;
   },
 };
 
 const actions = {
   read({ commit, dispatch, state, rootState }, payload) {
-    const { address } = state;
+    const { address, assets: { length } } = state;
     const {
       offset,
       limit,
@@ -55,7 +63,10 @@ const actions = {
         const { data } = result ?? {};
         const { assets } = data ?? {};
         if (Array.isArray(assets)) {
-          commit('set', assets);
+          commit('setList', assets);
+          if (length === state.assets.length) {
+            commit('setNoMore', true);
+          }
         }
       })
       .catch((err) => err);
@@ -64,6 +75,7 @@ const actions = {
 
 const getters = {
   assets: (state) => state.assets,
+  noMore: (state) => state.noMore,
 };
 
 export default {
