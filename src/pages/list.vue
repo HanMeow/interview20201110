@@ -142,7 +142,7 @@ export default {
     async init() {
       // this.setLoading('資源載入中');
       // this.setLoading(false);
-      await this.wait(1);
+      await this.wait(10);
       this.getList();
     },
     onScroll(e) {
@@ -159,6 +159,7 @@ export default {
       if (!noMore) {
         this.setLoading('讀取中');
         await this.read({ offset: assets.length });
+        await this.wait(100);
         this.setLoading(false);
       }
     },
